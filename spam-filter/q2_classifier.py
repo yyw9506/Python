@@ -48,15 +48,15 @@ def check_args(args):
     else:
         return False
 
-def printProgress(iteration, total, prefix='', suffix='', decimals=1, barLength=100):
-    formatStr = "{0:." + str(decimals) + "f}"
-    percent = formatStr.format(100 * (iteration / float(total)))
-    filledLength = int(round(barLength * iteration / float(total)))
-    bar = '█' * filledLength + '_' * (barLength - filledLength)
-    sys.stdout.write('\r%s |%s| %s%s %s' % (prefix, bar, percent, '%', suffix)),
-    if iteration == total:
-        sys.stdout.write('\n')
-    sys.stdout.flush()
+def print_progress(iteration: int, total: int, prefix='', suffix='', decimals=1, bar_length=100):
+            format_str = "{0:." + str(decimals) + "f}"
+            percent = format_str.format(100 * (iteration / float(total)))
+            filled_length = int(round(bar_length * iteration / float(total)))
+            bar = '█' * filled_length + '_' * (bar_length - filled_length)
+            sys.stdout.write('\r%s |%s| %s%s %s' % (prefix, bar, percent, '%', suffix)),
+            if iteration == total:
+            sys.stdout.write('\n')
+            sys.stdout.flush()
 
 def spam_log_probability(words, prob_spam, laplace_smoothing_k, use_laplace_smoothing):
     if not isinstance(laplace_smoothing_k, int) or laplace_smoothing_k < 1:
@@ -195,7 +195,7 @@ if __name__ == '__main__':
                         train_vocabulary[key] += float(val)
                     index += 2
 
-                printProgress(instance, size, prefix='Training:', suffix='Complete', barLength=50)
+                print_progress(instance, size, prefix='Training:', suffix='Complete', bar_length=50)
                 line = tf.readline()
                 # print(label)
         tf.close()
